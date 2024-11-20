@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PeliculasService } from '../servicios/peliculas.service';
+import { HttpClient } from '@angular/common/http';
 import { NotExpr } from '@angular/compiler';
 
 @Component({
