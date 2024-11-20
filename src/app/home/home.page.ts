@@ -1,13 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PeliculasService } from '../servicios/peliculas.service';
+import { NotExpr } from '@angular/compiler';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit{
   title:string= "HomePage"
-  constructor() { }
+  constructor(
+    private readonly peliculasService:PeliculasService
+  ) { }
+
+  ngOnInit(): void {
+    this.peliculasService.obtenerComedias().subscribe({
+      next:()=>{
+        console.log('peliculas obtenidas con exito')
+      },
+      error(err) {
+        console.error(err)
+      },
+    })
+  }
 
   sumar(a: number, b: number): number {
     if (a < 0 || b < 0) {
